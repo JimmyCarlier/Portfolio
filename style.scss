@@ -1,0 +1,436 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-image: url(bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+$size: 2rem;
+$font: "Oswald", sans-serif;
+
+@mixin Font($size) {
+  color: white;
+  font-size: $size;
+  font-family: "Lobster", cursive;
+}
+
+@mixin boutton {
+  border-radius: 20px;
+  width: 200px;
+  height: 40px;
+  font-family: $font;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@mixin hovereffect {
+  transform: scale(1);
+  transition: 400ms ease-in-out;
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+$alignTop: 90%;
+
+@mixin GlassEffect($alignTop) {
+  max-width: 800px;
+  height: 400px;
+  margin-bottom: 200px;
+  position: absolute;
+  left: 50%;
+  top: $alignTop;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 32px;
+}
+
+nav {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  ul {
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+    list-style: none;
+    & li {
+      margin-right: 2rem;
+    }
+    & a {
+      text-decoration: none;
+      color: rgb(0, 0, 0);
+      font-size: 2rem;
+      font-family: "Oswald", sans-serif;
+      display: inline;
+      position: relative;
+    }
+
+    & a::after {
+      content: "";
+      position: absolute;
+      bottom: -5px; /* ajuster la position du soulignement par rapport au texte */
+      left: 0;
+      width: 100%;
+      height: 2px; /* ajuster l'épaisseur du soulignement */
+      background-color: rgb(0, 0, 0); /* ajuster la couleur du soulignement */
+      transform: scaleX(0); /* cacher initialement le soulignement */
+      transition: transform 0.3s ease-in-out; /* ajouter une transition pour l'animation */
+      transform-origin: left;
+    }
+
+    & a:hover::after {
+      transform: scaleX(
+        1
+      ); /* faire apparaître le soulignement lors du survol */
+    }
+  }
+}
+.material-symbols-outlined {
+  & a {
+    text-decoration: none;
+    color: black;
+    margin-left: 1rem;
+  }
+}
+
+.header {
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  margin-bottom: 1rem;
+  > h1 {
+    @include Font(5rem);
+  }
+  > h2 {
+    @include Font(4rem);
+    margin-bottom: 1rem;
+  }
+  > h3 {
+    @include Font(2rem);
+    font-weight: bolder;
+  }
+}
+.glass {
+  max-width: 800px;
+  height: 400px;
+  margin-bottom: 200px;
+  position: absolute;
+  left: 50%;
+  top: 90%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 32px;
+  // -webkit-box-reflect: below 0px
+  //   linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+  &__form {
+    display: block;
+    padding: 30px;
+    top: 70%;
+  }
+  .slider-1 {
+    max-width: 700px;
+    // position: absolute;
+    // left: 20%;
+    // margin-left: 420px;
+    // margin-top: 400px;
+    // margin-bottom: 200px;
+    // border: 1px solid #fff;
+    overflow: hidden;
+    & .slider {
+      display: flex;
+      animation: slider-1 12s infinite ease-in-out;
+    }
+    & p {
+      flex-shrink: 0;
+      width: 100%;
+    }
+  }
+}
+
+@keyframes slider-1 {
+  0%,
+  20% {
+    transform: translateX(0);
+  }
+  25%,
+  45% {
+    transform: translateX(-100%);
+  }
+  50%,
+  70% {
+    transform: translateX(-200%);
+  }
+  75%,
+  90% {
+    transform: translateX(-300%);
+  }
+  100% {
+    transform: translateX(-400%);
+  }
+}
+.contact {
+  color: white;
+  text-align: center;
+  & .mycontact {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    & p {
+      text-align: left;
+      font-size: 2rem;
+      font-family: $font;
+    }
+    & input {
+      width: 300px;
+      height: 30px;
+      padding: 5px 5px;
+      border: none;
+      outline: none;
+      border-radius: 10px;
+      transition: transform 400ms ease-in-out;
+      transform: scale(1);
+      font-family: $font;
+      &:focus {
+        border: 2px solid rgb(122, 111, 111);
+        transform: scale(1.1);
+      }
+    }
+    & .email {
+      & input {
+        transition: 400ms ease-in-out;
+        &:not(:focus):invalid {
+          background-color: red;
+          color: white;
+        }
+      }
+    }
+  }
+  & .other {
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    & .comment {
+      & p {
+        font-size: 2rem;
+        font-family: $font;
+      }
+    }
+    & textarea {
+      width: 600px;
+      height: 100px;
+      padding: 10px 10px;
+      border: none;
+      outline: none;
+      border-radius: 10px;
+      transition: transform 400ms ease-in-out;
+      transform: scale(1);
+      font-family: $font;
+      &:focus {
+        border: 2px solid rgb(122, 111, 111);
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+::placeholder {
+  font-family: $font;
+}
+
+.boutton {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  &__1 {
+    @include boutton;
+    @include hovereffect;
+  }
+  &__2 {
+    @include boutton;
+    @include hovereffect;
+  }
+}
+
+.my_project__1 {
+  width: 800px;
+  margin: auto;
+  h1 {
+    @include Font(2rem);
+    text-align: center;
+    margin-bottom: 100px;
+    margin-top: 100px;
+  }
+  h2 {
+    @include Font(1.5rem);
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  &--1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    text-align: center;
+    #first {
+      width: 800px;
+      height: auto;
+    }
+    .overlay {
+      text-align: center;
+      width: 200px;
+      color: white;
+      position: absolute;
+      opacity: 0;
+      left: 70%;
+      bottom: 50%;
+      transition: all 0.3s ease-in-out;
+      & .surligne {
+        position: absolute;
+        color: #54b3d6;
+        box-shadow: inset 0 0 0 0 #54b3d6;
+        margin: 0 0;
+        padding: 1rem 1rem;
+        border-radius: 20px;
+        font-family: "Roboto", sans-serif;
+        transition: color 1s ease-in-out, box-shadow 1s ease-in-out;
+      }
+    }
+    &:hover .overlay {
+      opacity: 1;
+      transform: translateX(100px);
+    }
+    &:hover .surligne {
+      color: #151515;
+      box-shadow: inset 200px 0 0 0 #54b3d6;
+    }
+    &:hover .info {
+      opacity: 0;
+    }
+    &:hover .disapear {
+      opacity: 0;
+    }
+    & .info {
+      color: white;
+      position: absolute;
+      background-color: black;
+      margin: 0;
+      width: 800px;
+      height: 385px;
+      opacity: 0.7;
+      transition: opacity 1s ease-in-out;
+      & .disapear {
+        position: absolute;
+        top: 50%;
+        left: 40%;
+        font-family: "Roboto", sans-serif;
+        font-size: 20px;
+      }
+    }
+  }
+}
+.my_project__2 {
+  width: 800px;
+  margin: auto;
+  position: relative;
+  h1 {
+    @include Font(2rem);
+    text-align: center;
+    margin-bottom: 100px;
+    margin-top: 100px;
+  }
+  h2 {
+    @include Font(1.5rem);
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  &--2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    text-align: center;
+    #seconde {
+      width: 800px;
+      height: auto;
+    }
+    .auverlay {
+      text-align: center;
+      width: 200px;
+      color: white;
+      position: absolute;
+      opacity: 0;
+      left: 70%;
+      bottom: 50%;
+      transition: all 0.3s ease-in-out;
+      & .stabilo {
+        position: absolute;
+        color: #54b3d6;
+        box-shadow: inset 0 0 0 0 #54b3d6;
+        margin: 0 0;
+        padding: 1rem 1rem;
+        border-radius: 20px;
+        font-family: "Roboto", sans-serif;
+        transition: color 1s ease-in-out, box-shadow 1s ease-in-out;
+      }
+    }
+    &:hover .auverlay {
+      opacity: 1;
+      transform: translateX(100px);
+    }
+    &:hover .stabilo {
+      color: #151515;
+      box-shadow: inset 200px 0 0 0 #54b3d6;
+    }
+    &:hover .souris {
+      opacity: 0;
+    }
+    &:hover .magie {
+      opacity: 0;
+    }
+    & .souris {
+      color: white;
+      position: absolute;
+      background-color: black;
+      margin: 0;
+      width: 800px;
+      height: 385px;
+      opacity: 0.7;
+      transition: opacity 1s ease-in-out;
+      & .magie {
+        position: absolute;
+        top: 50%;
+        left: 40%;
+        font-family: "Roboto", sans-serif;
+        font-size: 20px;
+      }
+    }
+  }
+}
