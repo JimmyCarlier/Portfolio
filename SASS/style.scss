@@ -3,7 +3,7 @@
   padding: 0;
 }
 body {
-  background-image: url(bg.jpg);
+  background-image: url(/Image/bg.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -66,8 +66,8 @@ nav {
   ul {
     display: flex;
     justify-content: flex-end;
-    gap: 2rem;
     list-style: none;
+    flex-wrap: wrap;
     & li {
       margin-right: 2rem;
     }
